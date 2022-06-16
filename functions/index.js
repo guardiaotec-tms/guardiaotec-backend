@@ -18,7 +18,7 @@ exports.handleTripPlanningHttps = functions
     //   response.send("Hello from Firebase!");
     const controller = new TripPlanController();
     await controller.main();
-    console.log("magruat");
+    // console.log("magruat");
     response.json({ msg: "from trip planning" });
     // });
   });

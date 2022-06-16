@@ -1,8 +1,6 @@
 const { default: axios } = require("axios");
 
 const dispatchJsonToCorreios = async (planTripJson) => {
-  console.log(planTripJson);
-
   planTripJson = {
     date: "15062022",
     idFicha: "15713114",

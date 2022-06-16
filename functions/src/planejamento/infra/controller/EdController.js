@@ -47,7 +47,7 @@ class EdController {
 
   async saveEd() {
     console.log("agora é a hora de salvar a tal da ed! logando ela:");
-    console.log(this.ed);
+    // console.log(this.ed);
     for (const ftNumber in this.ed) {
       await db
         .doc(

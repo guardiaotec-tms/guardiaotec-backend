@@ -58,7 +58,7 @@ class TripPlanController {
   };
 
   main = async () => {
-    console.log("to aqui");
+    // console.log("to aqui");
     const companies = await getCompanies();
     // const companies = [
     //   {
