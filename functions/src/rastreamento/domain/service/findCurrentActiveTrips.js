@@ -12,7 +12,7 @@ const findCurrentActiveTrips = async () => {
 
   const currentTrips = todaysTrips.filter((t) => {
     const range = tripRangeArray(t.horarioInicio, t.horarioFim);
-    return range.includes(currentHour);
+    return range.includes(Number(currentHour));
   });
 
   return currentTrips;

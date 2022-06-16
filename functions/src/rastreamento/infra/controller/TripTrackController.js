@@ -18,6 +18,7 @@ const { saveResponse } = require("../service/saveResponse");
 class TripTrackController {
   constructor() {
     this.latestEvents = [];
+    this.eventsIntegrated = 0;
   }
 
   async integrateEvent(trip, event) {
@@ -25,7 +26,8 @@ class TripTrackController {
     //trip é a ed
     const trackJson = makeTrackJson(event, trip, previousTrackJson);
     const response = await dispatchTrackJsonToCorreios(trackJson);
-    saveResponse(response, trip);
+    saveResponse(response, trip, event.dataEquipamento);
+    this.eventsIntegrated += 1;
   }
 
   async integrateTrip(trip) {
@@ -37,15 +39,14 @@ class TripTrackController {
 
   async main() {
     const currentTrips = await findCurrentActiveTrips();
-    // console.log(
-    //   currentTrips.map((t) => t.plannedTrip.plannedVehicle.licensePlate)
-    // );
     this.latestEvents = await getLatestEvents();
-    // this.latestEvents = dummyEvents();
-    // console.log(this.latestEvents);
-    for (const trip of currentTrips) {
-      this.integrateTrip(trip);
-    }
+
+    const promises = currentTrips.map((trip) => this.integrateTrip(trip));
+    Promise.all(promises).then(() => {
+      console.log("integrated " + this.eventsIntegrated + " events");
+    });
+    // for (const trip of currentTrips) {
+    // }
     /*
         encontre as viagens ativas agora
         para cada viagem ativa agora faça:
