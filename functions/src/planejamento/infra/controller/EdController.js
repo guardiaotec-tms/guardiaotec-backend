@@ -1,7 +1,7 @@
+const { db } = require("../../../shared/infra/database/firebase");
 const {
   getCurrentFormattedDate,
 } = require("../../../shared/infra/service/getCurrentFormattedDate");
-const { db } = require("../firebase");
 
 class EdController {
   constructor() {

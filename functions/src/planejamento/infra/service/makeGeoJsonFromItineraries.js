@@ -1,5 +1,5 @@
 const { db } = require("../../../shared/infra/database/firebase");
-const { getCoordinatesFromAddress } = require("./geocoder");
+const { getCoordinatesFromAddress } = require("../http/geocoder");
 
 const makeGeoJsonFromCoordsArray = (coordsArray) => {
   const bbox = getBBoxOfCoordsArray(coordsArray);

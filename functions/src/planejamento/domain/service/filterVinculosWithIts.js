@@ -1,8 +1,10 @@
-// const { getItineraries } = require("./getItineraries");
+const {
+  getItineraries,
+} = require("../../../shared/infra/repository/getItineraries");
 
-const hasItineraries = async (lineNumber, transpId) => {
-  return its.length > 0;
-};
+// const hasItineraries = async (lineNumber, transpId) => {
+//   return its.length > 0;
+// };
 
 const filterVinculosWithIts = async (vinculosMap, transpId) => {
   const test = [];

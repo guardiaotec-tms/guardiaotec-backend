@@ -1,3 +1,18 @@
+const {
+  findVinculosFromFts,
+  getCompanies,
+} = require("../../../shared/infra/repository");
+const {
+  findTodayTrips,
+} = require("../../../shared/infra/service/findTodayTrips");
+const {
+  filterVinculosWithIts,
+} = require("../../domain/service/filterVinculosWithIts");
+const { findTripTimeRange } = require("../../domain/service/findTripTimeRange");
+const { makePlantripJson } = require("../../domain/service/makePlantripJson");
+const { dispatchJsonToCorreios } = require("../http/dispatchJsonToCorreios");
+const { EdController } = require("./EdController");
+
 class TripPlanController {
   constructor() {
     this.edController = new EdController();
@@ -43,6 +58,7 @@ class TripPlanController {
   };
 
   main = async () => {
+    console.log("to aqui");
     const companies = await getCompanies();
     // const companies = [
     //   {
