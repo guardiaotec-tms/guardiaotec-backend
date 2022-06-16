@@ -10,7 +10,7 @@ const getGeoJson = async (transpId, vinculo) => {
       if (doc.exists) return doc.data();
     });
 
-  if (geojsonDoc) console.log("encontrei");
+  // if (geojsonDoc) console.log("encontrei");
   if (geojsonDoc) return geojsonDoc.geojson;
   return makeGeoJson(transpId, vinculo);
 };

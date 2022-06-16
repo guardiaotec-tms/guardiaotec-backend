@@ -52,6 +52,7 @@ class TripPlanController {
       const ft = todaysTripsFts.find((ft) => ft["Nº da FT"] === ftNumber);
       this.edController.addFt(ftNumber, ft);
       this.edController.setTranspName(ftNumber, company.Transportadora);
+      this.edController.setTranspId(ftNumber, company.Id);
       const vinculo = withIts[ftNumber];
       await this.integrateTrip(vinculo, company.id);
     }
