@@ -52,7 +52,7 @@ class TripPlanController {
       const ft = todaysTripsFts.find((ft) => ft["Nº da FT"] === ftNumber);
       this.edController.addFt(ftNumber, ft);
       this.edController.setTranspName(ftNumber, company.Transportadora);
-      this.edController.setTranspId(ftNumber, company.Id);
+      this.edController.setTranspId(ftNumber, company.id);
       const vinculo = withIts[ftNumber];
       await this.integrateTrip(vinculo, company.id);
     }
@@ -71,10 +71,16 @@ class TripPlanController {
     //     id: "sPoryp9HSLenEbzlYQTq",
     //   },
     // ];
-    for (const company of companies) {
-      await this.integrateCompanyTrips(company);
-    }
-    this.edController.saveEd();
+
+    // for (const company of companies) {
+    //   this.integrateCompanyTrips(company);
+    // }
+    const promises = companies.map((company) =>
+      this.integrateCompanyTrips(company)
+    );
+    Promise.all(promises).then(() => {
+      this.edController.saveEd();
+    });
   };
 }
 

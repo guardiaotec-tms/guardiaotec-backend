@@ -86,6 +86,7 @@ const getCompanies = async () => {
       qs.forEach((doc) => {
         let data = doc.data();
         data.id = doc.id;
+        console.log(data.id);
         companies.push(data);
       });
     });

@@ -30,8 +30,8 @@ class EdController {
     this.ed[ftNumber].transportadora = name;
   }
 
-  setTranspName(ftNumber, id) {
-    this.ed[ftNumber].transpoId = id;
+  setTranspId(ftNumber, id) {
+    this.ed[ftNumber].transpId = id;
   }
 
   setDriverNumber(ftNumber, driverNumber) {
