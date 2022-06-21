@@ -26,7 +26,7 @@ class TripTrackController {
     //trip é a ed
     const trackJson = makeTrackJson(event, trip, previousTrackJson);
     const response = await dispatchTrackJsonToCorreios(trackJson);
-    saveResponse(response, trip, event.dataEquipamento);
+    // saveResponse(response, trip, event.dataEquipamento);
     this.eventsIntegrated += 1;
   }
 
