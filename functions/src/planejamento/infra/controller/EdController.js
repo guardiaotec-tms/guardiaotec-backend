@@ -2,6 +2,7 @@ const { db } = require("../../../shared/infra/database/firebase");
 const {
   getCurrentFormattedDate,
 } = require("../../../shared/infra/service/getCurrentFormattedDate");
+const { mergeHourWithToday } = require("../service/mergeHourWithToday");
 
 class EdController {
   constructor() {
@@ -49,15 +50,47 @@ class EdController {
     this.ed[ftNumber].horarioInicio = horarioInicio;
   }
 
+  setAberturaLinha(ftNumber, aberturaLinha) {
+    // console.log(aberturaLinha);
+    this.ed[ftNumber].aberturaLinha = aberturaLinha;
+  }
+
+  makeTMSPlanningReport(ftNumber) {
+    const ed = this.ed[ftNumber];
+    const tmsPlanningReport = {};
+    tmsPlanningReport.linha = ed["Nº da Linha"];
+    tmsPlanningReport.placa = ed.plannedTrip.plannedVehicle.licensePlate;
+    tmsPlanningReport.horarioEnvio = new Date();
+    // tmsPlanningReport.aberturaLinha = ed.aberturaLinha;
+    tmsPlanningReport.aberturaLinha = mergeHourWithToday(
+      ed.aberturaLinha.toDate()
+    );
+    // mergeHourWithToday(ed.aberturaLinha.toDate());
+    tmsPlanningReport.ft = ftNumber;
+    tmsPlanningReport.codigoTMS = ed.planTripResponse.Item;
+    tmsPlanningReport.transpId = ed.transpId;
+    tmsPlanningReport.transportadora = ed.transportadora;
+    tmsPlanningReport.resultado = ed.planTripResponse.Error
+      ? "Erro"
+      : "Sucesso";
+    return tmsPlanningReport;
+  }
+
   async saveEd() {
     console.log("agora é a hora de salvar a tal da ed! logando ela:");
     // console.log(this.ed);
     for (const ftNumber in this.ed) {
-      await db
-        .doc(
-          `trackingHelperDataStructures/eds/${getCurrentFormattedDate()}/${ftNumber}`
-        )
-        .set(this.ed[ftNumber]);
+      db.doc(
+        `trackingHelperDataStructures/eds/${getCurrentFormattedDate()}/${ftNumber}`
+      ).set(this.ed[ftNumber]);
+    }
+
+    console.log("hora de salvar os tmsPlanningReports");
+    for (const ftNumber in this.ed) {
+      const report = this.makeTMSPlanningReport(ftNumber);
+      db.collection(
+        `tmsPlanningReports/${getCurrentFormattedDate()}/reports`
+      ).add(report);
     }
   }
 }

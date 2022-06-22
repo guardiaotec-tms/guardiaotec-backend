@@ -54,6 +54,7 @@ class TripPlanController {
       this.edController.setTranspName(ftNumber, company.Transportadora);
       this.edController.setTranspId(ftNumber, company.id);
       const vinculo = withIts[ftNumber];
+      this.edController.setAberturaLinha(ftNumber, vinculo.its[0].Chegada);
       await this.integrateTrip(vinculo, company.id);
     }
   };

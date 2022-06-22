@@ -66,4 +66,4 @@ const makeGeoJsonFromItineraries = async (itineraries, transpId) => {
 //   console.log(result);
 // });
 
-module.exports = { makeGeoJsonFromItineraries };
+module.exports = { makeGeoJsonFromItineraries, sortBySequencia };
