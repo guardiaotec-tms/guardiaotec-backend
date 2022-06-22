@@ -4,4 +4,5 @@ const db = admin.firestore();
 
 module.exports = {
   db,
+  auth: admin.auth,
 };
