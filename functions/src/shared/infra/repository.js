@@ -1,6 +1,7 @@
 const { db } = require("./database/firebase");
 
 const getDriverData = async (transpId, driverName) => {
+  if (!driverName) return undefined;
   return db
     .collection("companies/" + transpId + "/drivers")
     .where("nome", "==", driverName)

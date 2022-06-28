@@ -5,7 +5,11 @@ class UsersManager {
 
   async deleteUser(req, res) {
     try {
-      const userId = req.body.userId;
+      const body = JSON.parse(req.body);
+      const userId = body.userId;
+      console.log(req.body);
+      console.log(req.body.userId);
+      console.log(userId);
       await auth()
         .deleteUser(userId)
         .then(() => {
@@ -15,6 +19,7 @@ class UsersManager {
 
       res.json({ msg: "Successfully deleted user", success: true });
     } catch (error) {
+      console.log(error);
       res.json({ msg: "Error: " + error.message, success: false });
     }
   }

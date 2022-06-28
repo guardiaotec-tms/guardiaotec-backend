@@ -12,9 +12,15 @@ const findTripTimeRange = async (vinculo, transpId) => {
       });
       return lines;
     });
-  const sorted = itineraryLines.sort(
-    (i1, i2) => i1.Chegada.toDate().getTime() - i2.Chegada.toDate().getTime()
-  );
+  const sorted = itineraryLines.sort((i1, i2) => {
+    try {
+      return i1.Chegada.toDate().getTime() - i2.Chegada.toDate().getTime();
+    } catch (error) {
+      console.log(transpId);
+      if (i1.Chegada) return -1;
+      else return 1;
+    }
+  });
 
   const horarioInicio = sorted[0].Chegada.toDate();
   const horarioFim = sorted[sorted.length - 1].Partida.toDate();
