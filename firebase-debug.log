@@ -2605,3 +2605,119 @@ Issues? Report them at https://github.com/firebase/firebase-tools/issues and att
 [debug] [2022-06-28T00:49:07.335Z] [work-queue] {"queueLength":0,"workRunningCount":0}
 [info] >  agora é a hora de salvar a tal da ed! logando ela: {"user":"agora é a hora de salvar a tal da ed! logando ela:","metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-handleTripPlanningHttps"},"extension":{},"message":"\u001b[90m> \u001b[39m agora é a hora de salvar a tal da ed! logando ela:"}}
 [info] >  hora de salvar os tmsPlanningReports {"user":"hora de salvar os tmsPlanningReports","metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-handleTripPlanningHttps"},"extension":{},"message":"\u001b[90m> \u001b[39m hora de salvar os tmsPlanningReports"}}
+[debug] [2022-06-28T00:50:49.543Z] ----------------------------------------------------------------------
+[debug] [2022-06-28T00:50:49.545Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\dimio\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2022-06-28T00:50:49.545Z] CLI Version:   10.9.2
+[debug] [2022-06-28T00:50:49.545Z] Platform:      win32
+[debug] [2022-06-28T00:50:49.545Z] Node Version:  v16.15.0
+[debug] [2022-06-28T00:50:49.546Z] Time:          Mon Jun 27 2022 21:50:49 GMT-0300 (Brasilia Standard Time)
+[debug] [2022-06-28T00:50:49.546Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-06-28T00:50:49.658Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-06-28T00:50:49.660Z] > authorizing via signed-in user (dimiortt@gmail.com)
+[debug] [2022-06-28T00:50:49.660Z] [iam] checking project guardiaotec-tms for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2022-06-28T00:50:49.671Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/guardiaotec-tms:testIamPermissions [none]
+[debug] [2022-06-28T00:50:49.672Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/guardiaotec-tms:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2022-06-28T00:50:50.611Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/guardiaotec-tms:testIamPermissions 200
+[debug] [2022-06-28T00:50:50.611Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/guardiaotec-tms:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2022-06-28T00:50:50.612Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/guardiaotec-tms/serviceAccounts/guardiaotec-tms@appspot.gserviceaccount.com:testIamPermissions [none]
+[debug] [2022-06-28T00:50:50.612Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/guardiaotec-tms/serviceAccounts/guardiaotec-tms@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2022-06-28T00:50:51.558Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/guardiaotec-tms/serviceAccounts/guardiaotec-tms@appspot.gserviceaccount.com:testIamPermissions 200
+[debug] [2022-06-28T00:50:51.558Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/guardiaotec-tms/serviceAccounts/guardiaotec-tms@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[info] 
+[info] === Deploying to 'guardiaotec-tms'...
+[info] 
+[info] i  deploying functions 
+[debug] [2022-06-28T00:50:51.563Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/guardiaotec-tms [none]
+[debug] [2022-06-28T00:50:51.938Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/guardiaotec-tms 200
+[debug] [2022-06-28T00:50:51.939Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/guardiaotec-tms {"projectId":"guardiaotec-tms","projectNumber":"1030687051805","displayName":"guardiaotec-tms","name":"projects/guardiaotec-tms","resources":{"hostingSite":"guardiaotec-tms","storageBucket":"guardiaotec-tms.appspot.com","locationId":"us-east1"},"state":"ACTIVE"}
+[info] i  functions: ensuring required API cloudfunctions.googleapis.com is enabled... 
+[info] i  functions: ensuring required API cloudbuild.googleapis.com is enabled... 
+[debug] [2022-06-28T00:50:51.941Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/guardiaotec-tms/services/cloudfunctions.googleapis.com [none]
+[debug] [2022-06-28T00:50:51.942Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/guardiaotec-tms/services/runtimeconfig.googleapis.com [none]
+[debug] [2022-06-28T00:50:51.944Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/guardiaotec-tms/services/cloudbuild.googleapis.com [none]
+[debug] [2022-06-28T00:50:51.945Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/guardiaotec-tms/services/artifactregistry.googleapis.com [none]
+[debug] [2022-06-28T00:50:53.043Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/guardiaotec-tms/services/runtimeconfig.googleapis.com 200
+[debug] [2022-06-28T00:50:53.043Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/guardiaotec-tms/services/runtimeconfig.googleapis.com [omitted]
+[debug] [2022-06-28T00:50:53.044Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/guardiaotec-tms/services/cloudfunctions.googleapis.com 200
+[debug] [2022-06-28T00:50:53.044Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/guardiaotec-tms/services/cloudfunctions.googleapis.com [omitted]
+[info] +  functions: required API cloudfunctions.googleapis.com is enabled 
+[debug] [2022-06-28T00:50:53.045Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/guardiaotec-tms/services/cloudbuild.googleapis.com 200
+[debug] [2022-06-28T00:50:53.045Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/guardiaotec-tms/services/cloudbuild.googleapis.com [omitted]
+[info] +  functions: required API cloudbuild.googleapis.com is enabled 
+[debug] [2022-06-28T00:50:53.107Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/guardiaotec-tms/services/artifactregistry.googleapis.com 200
+[debug] [2022-06-28T00:50:53.108Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/guardiaotec-tms/services/artifactregistry.googleapis.com [omitted]
+[debug] [2022-06-28T00:50:53.108Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/guardiaotec-tms/adminSdkConfig [none]
+[debug] [2022-06-28T00:50:54.212Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/guardiaotec-tms/adminSdkConfig 200
+[debug] [2022-06-28T00:50:54.212Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/guardiaotec-tms/adminSdkConfig {"projectId":"guardiaotec-tms","storageBucket":"guardiaotec-tms.appspot.com","locationId":"us-east1"}
+[debug] [2022-06-28T00:50:54.212Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/guardiaotec-tms/configs [none]
+[debug] [2022-06-28T00:50:54.715Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/guardiaotec-tms/configs 200
+[debug] [2022-06-28T00:50:54.716Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/guardiaotec-tms/configs {}
+[info] i  functions: preparing codebase default for deployment 
+[debug] [2022-06-28T00:50:54.720Z] Validating nodejs source
+[debug] [2022-06-28T00:50:58.157Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "firebase-admin": "^10.0.2",
+    "firebase-functions": "^3.18.0",
+    "google-geocoder": "^0.2.1",
+    "xml-js": "^1.6.11"
+  },
+  "devDependencies": {
+    "firebase-functions-test": "^0.2.0"
+  },
+  "private": true
+}
+[debug] [2022-06-28T00:50:58.157Z] Building nodejs source
+[debug] [2022-06-28T00:50:58.158Z] Analyzing nodejs backend spec
+[debug] [2022-06-28T00:50:58.158Z] Could not find functions.yaml. Must use http discovery
+[debug] [2022-06-28T00:50:58.395Z] Serving at port 9005
+
+[debug] [2022-06-28T00:50:58.723Z] Got response from /__/functions.yaml {"endpoints":{"handleTripPlanningHttps":{"platform":"gcfv1","timeoutSeconds":540,"httpsTrigger":{},"entryPoint":"handleTripPlanningHttps"},"handleTripTrackingHttps":{"platform":"gcfv1","timeoutSeconds":540,"httpsTrigger":{},"entryPoint":"handleTripTrackingHttps"},"deleteUser":{"platform":"gcfv1","timeoutSeconds":540,"httpsTrigger":{},"entryPoint":"deleteUser"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[debug] [2022-06-28T00:50:58.739Z] shutdown requested via /__/quitquitquit
+
+[info] i  functions: preparing functions directory for uploading... 
+[info] i  functions: packaged C:\Users\dimio\Documents\dev\Node\guardiaotec-backend-2\functions (79.41 KB) for uploading 
+[debug] [2022-06-28T00:50:58.988Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v1/projects/guardiaotec-tms/locations/-/functions [none]
+[debug] [2022-06-28T00:51:00.596Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v1/projects/guardiaotec-tms/locations/-/functions 200
+[debug] [2022-06-28T00:51:00.597Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v1/projects/guardiaotec-tms/locations/-/functions {"functions":[{"name":"projects/guardiaotec-tms/locations/us-central1/functions/createUser","httpsTrigger":{"url":"https://us-central1-guardiaotec-tms.cloudfunctions.net/createUser","securityLevel":"SECURE_ALWAYS"},"status":"ACTIVE","entryPoint":"createUser","timeout":"60s","availableMemoryMb":256,"serviceAccountEmail":"guardiaotec-tms@appspot.gserviceaccount.com","updateTime":"2022-04-05T08:52:39.931Z","versionId":"1","labels":{"deployment-tool":"cli-firebase"},"sourceUploadUrl":"https://storage.googleapis.com/uploads-988754960241.us-central1.cloudfunctions.appspot.com/b36807eb-7a5d-457c-b460-e27bf352e10e.zip","environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"guardiaotec-tms\",\"storageBucket\":\"guardiaotec-tms.appspot.com\",\"locationId\":\"us-east1\"}","GCLOUD_PROJECT":"guardiaotec-tms"},"runtime":"nodejs16","ingressSettings":"ALLOW_ALL","buildId":"5cd67ce9-f338-4d19-9fde-94f842dab650","buildName":"projects/1030687051805/locations/us-central1/builds/5cd67ce9-f338-4d19-9fde-94f842dab650","dockerRegistry":"CONTAINER_REGISTRY"},{"name":"projects/guardiaotec-tms/locations/us-central1/functions/deleteUser","httpsTrigger":{"url":"https://us-central1-guardiaotec-tms.cloudfunctions.net/deleteUser","securityLevel":"SECURE_ALWAYS"},"status":"ACTIVE","entryPoint":"deleteUser","timeout":"540s","availableMemoryMb":256,"serviceAccountEmail":"guardiaotec-tms@appspot.gserviceaccount.com","updateTime":"2022-06-22T23:51:33.844Z","versionId":"1","labels":{"deployment-tool":"cli-firebase"},"sourceUploadUrl":"https://storage.googleapis.com/uploads-988754960241.us-central1.cloudfunctions.appspot.com/7d47975a-3338-4e7f-ad57-d586978d706a.zip","environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"guardiaotec-tms\",\"storageBucket\":\"guardiaotec-tms.appspot.com\",\"locationId\":\"us-east1\"}","GCLOUD_PROJECT":"guardiaotec-tms"},"runtime":"nodejs16","ingressSettings":"ALLOW_ALL","buildId":"32b1e89b-4093-4175-a9bd-cd5f34f4bcdc","buildName":"projects/1030687051805/locations/us-central1/builds/32b1e89b-4093-4175-a9bd-cd5f34f4bcdc","dockerRegistry":"CONTAINER_REGISTRY"},{"name":"projects/guardiaotec-tms/locations/us-central1/functions/handleTripPlanning","eventTrigger":{"eventType":"google.pubsub.topic.publish","resource":"projects/guardiaotec-tms/topics/cron-topic","service":"pubsub.googleapis.com","failurePolicy":{}},"status":"ACTIVE","entryPoint":"helloPubSub","timeout":"540s","availableMemoryMb":256,"serviceAccountEmail":"guardiaotec-tms@appspot.gserviceaccount.com","updateTime":"2022-06-15T20:59:10.423Z","versionId":"2","labels":{"deployment-tool":"console-cloud"},"sourceUploadUrl":"https://storage.googleapis.com/uploads-988754960241.us-central1.cloudfunctions.appspot.com/b7d5d570-6c92-4f71-b81d-51cbfc30d45c.zip","runtime":"nodejs16","maxInstances":3000,"ingressSettings":"ALLOW_ALL","buildId":"7d85a50b-fd37-4120-a71b-d25f4e4b2193","buildName":"projects/1030687051805/locations/us-central1/builds/7d85a50b-fd37-4120-a71b-d25f4e4b2193","dockerRegistry":"CONTAINER_REGISTRY"},{"name":"projects/guardiaotec-tms/locations/us-central1/functions/handleTripPlanningHttps","httpsTrigger":{"url":"https://us-central1-guardiaotec-tms.cloudfunctions.net/handleTripPlanningHttps","securityLevel":"SECURE_ALWAYS"},"status":"ACTIVE","entryPoint":"handleTripPlanningHttps","timeout":"540s","availableMemoryMb":256,"serviceAccountEmail":"guardiaotec-tms@appspot.gserviceaccount.com","updateTime":"2022-06-22T23:51:28.315Z","versionId":"25","labels":{"deployment-tool":"cli-firebase"},"sourceUploadUrl":"https://storage.googleapis.com/uploads-988754960241.us-central1.cloudfunctions.appspot.com/7d47975a-3338-4e7f-ad57-d586978d706a.zip","environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"guardiaotec-tms\",\"storageBucket\":\"guardiaotec-tms.appspot.com\",\"locationId\":\"us-east1\"}","GCLOUD_PROJECT":"guardiaotec-tms"},"runtime":"nodejs16","ingressSettings":"ALLOW_ALL","buildId":"6653d15b-21d2-4a50-b254-c439be0a09e4","buildName":"projects/1030687051805/locations/us-central1/builds/6653d15b-21d2-4a50-b254-c439be0a09e4","dockerRegistry":"CONTAINER_REGISTRY"},{"name":"projects/guardiaotec-tms/locations/us-central1/functions/handleTripTracking","eventTrigger":{"eventType":"google.pubsub.topic.publish","resource":"projects/guardiaotec-tms/topics/tracking-topic","service":"pubsub.googleapis.com","failurePolicy":{}},"status":"ACTIVE","entryPoint":"helloPubSub","timeout":"60s","availableMemoryMb":256,"serviceAccountEmail":"guardiaotec-tms@appspot.gserviceaccount.com","updateTime":"2022-06-16T07:12:50.367Z","versionId":"2","labels":{"deployment-tool":"console-cloud"},"sourceUploadUrl":"https://storage.googleapis.com/uploads-988754960241.us-central1.cloudfunctions.appspot.com/37bff91c-c465-4a92-baf0-16791689f196.zip","runtime":"nodejs16","maxInstances":3000,"ingressSettings":"ALLOW_ALL","buildId":"a395ba2c-b766-4599-9842-5715a7d9bff4","buildName":"projects/1030687051805/locations/us-central1/builds/a395ba2c-b766-4599-9842-5715a7d9bff4","dockerRegistry":"CONTAINER_REGISTRY"},{"name":"projects/guardiaotec-tms/locations/us-central1/functions/handleTripTrackingHttps","httpsTrigger":{"url":"https://us-central1-guardiaotec-tms.cloudfunctions.net/handleTripTrackingHttps","securityLevel":"SECURE_ALWAYS"},"status":"ACTIVE","entryPoint":"handleTripTrackingHttps","timeout":"540s","availableMemoryMb":256,"serviceAccountEmail":"guardiaotec-tms@appspot.gserviceaccount.com","updateTime":"2022-06-22T23:52:37.279Z","versionId":"8","labels":{"deployment-tool":"cli-firebase"},"sourceUploadUrl":"https://storage.googleapis.com/uploads-988754960241.us-central1.cloudfunctions.appspot.com/7d47975a-3338-4e7f-ad57-d586978d706a.zip","environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"guardiaotec-tms\",\"storageBucket\":\"guardiaotec-tms.appspot.com\",\"locationId\":\"us-east1\"}","GCLOUD_PROJECT":"guardiaotec-tms"},"runtime":"nodejs16","ingressSettings":"ALLOW_ALL","buildId":"6653d15b-21d2-4a50-b254-c439be0a09e4","buildName":"projects/1030687051805/locations/us-central1/builds/6653d15b-21d2-4a50-b254-c439be0a09e4","dockerRegistry":"CONTAINER_REGISTRY"}]}
+[debug] [2022-06-28T00:51:00.598Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v2alpha/projects/guardiaotec-tms/locations/-/functions [none]
+[debug] [2022-06-28T00:51:01.883Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v2alpha/projects/guardiaotec-tms/locations/-/functions 200
+[debug] [2022-06-28T00:51:01.884Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v2alpha/projects/guardiaotec-tms/locations/-/functions {}
+[debug] [2022-06-28T00:51:01.897Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/guardiaotec-tms [none]
+[debug] [2022-06-28T00:51:02.991Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/guardiaotec-tms 200
+[debug] [2022-06-28T00:51:02.992Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/guardiaotec-tms {"projectId":"guardiaotec-tms","projectNumber":"1030687051805","displayName":"guardiaotec-tms","name":"projects/guardiaotec-tms","resources":{"hostingSite":"guardiaotec-tms","storageBucket":"guardiaotec-tms.appspot.com","locationId":"us-east1"},"state":"ACTIVE"}
+[debug] [2022-06-28T00:51:02.993Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/guardiaotec-tms [none]
+[debug] [2022-06-28T00:51:03.430Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/guardiaotec-tms 200
+[debug] [2022-06-28T00:51:03.430Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/guardiaotec-tms {"projectId":"guardiaotec-tms","projectNumber":"1030687051805","displayName":"guardiaotec-tms","name":"projects/guardiaotec-tms","resources":{"hostingSite":"guardiaotec-tms","storageBucket":"guardiaotec-tms.appspot.com","locationId":"us-east1"},"state":"ACTIVE"}
+[debug] [2022-06-28T00:51:03.430Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/guardiaotec-tms [none]
+[debug] [2022-06-28T00:51:03.862Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/guardiaotec-tms 200
+[debug] [2022-06-28T00:51:03.862Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/guardiaotec-tms {"projectId":"guardiaotec-tms","projectNumber":"1030687051805","displayName":"guardiaotec-tms","name":"projects/guardiaotec-tms","resources":{"hostingSite":"guardiaotec-tms","storageBucket":"guardiaotec-tms.appspot.com","locationId":"us-east1"},"state":"ACTIVE"}
+[debug] [2022-06-28T00:51:03.863Z] >>> [apiv2][query] POST https://cloudfunctions.googleapis.com/v1/projects/guardiaotec-tms/locations/us-central1/functions:generateUploadUrl [none]
+[debug] [2022-06-28T00:51:03.863Z] >>> [apiv2][body] POST https://cloudfunctions.googleapis.com/v1/projects/guardiaotec-tms/locations/us-central1/functions:generateUploadUrl {}
+[debug] [2022-06-28T00:51:05.133Z] <<< [apiv2][status] POST https://cloudfunctions.googleapis.com/v1/projects/guardiaotec-tms/locations/us-central1/functions:generateUploadUrl 200
+[debug] [2022-06-28T00:51:05.134Z] <<< [apiv2][body] POST https://cloudfunctions.googleapis.com/v1/projects/guardiaotec-tms/locations/us-central1/functions:generateUploadUrl {"uploadUrl":"https://storage.googleapis.com/uploads-988754960241.us-central1.cloudfunctions.appspot.com/d05a35c2-1e47-4a93-a945-78a54fdb6b41.zip?GoogleAccessId=service-1030687051805@gcf-admin-robot.iam.gserviceaccount.com&Expires=1656379260&Signature=NPaDlgWTVSSVT0334IKAbYUXCadlk93t5hxfNtz7Lkzfypb%2B5CJniQBJUz2XIAQbD2GsJ788EHsq6w39Yq5HzD8IB2ZvL5mVVNdGb0Lj7BYBijS8xmIny3qPpo8xGzNKS%2BTK%2B14yAUVHBRzXMHNcpAhiF4lM4XmAjgS2mhMQyUJqzoW7yzTVTDix2B%2FP7gSxZcuyk%2FgyaS6sbJYNeAFx9l7%2BgxEIBxaG65j3ti0gW5kqtZNdUd6KU%2Bz6F2UO93cocSetS5PrE00hrAc%2By2RTH4oQePHD2j5r6iH74KaDEiLHY1ipiqCvcG0nTmZZImyXPh1GlGfrHQCni9nbq4N%2Bdw%3D%3D"}
+[debug] [2022-06-28T00:51:05.135Z] >>> [apiv2][query] PUT https://storage.googleapis.com/uploads-988754960241.us-central1.cloudfunctions.appspot.com/d05a35c2-1e47-4a93-a945-78a54fdb6b41.zip GoogleAccessId=service-1030687051805%40gcf-admin-robot.iam.gserviceaccount.com&Expires=1656379260&Signature=NPaDlgWTVSSVT0334IKAbYUXCadlk93t5hxfNtz7Lkzfypb%2B5CJniQBJUz2XIAQbD2GsJ788EHsq6w39Yq5HzD8IB2ZvL5mVVNdGb0Lj7BYBijS8xmIny3qPpo8xGzNKS%2BTK%2B14yAUVHBRzXMHNcpAhiF4lM4XmAjgS2mhMQyUJqzoW7yzTVTDix2B%2FP7gSxZcuyk%2FgyaS6sbJYNeAFx9l7%2BgxEIBxaG65j3ti0gW5kqtZNdUd6KU%2Bz6F2UO93cocSetS5PrE00hrAc%2By2RTH4oQePHD2j5r6iH74KaDEiLHY1ipiqCvcG0nTmZZImyXPh1GlGfrHQCni9nbq4N%2Bdw%3D%3D
+[debug] [2022-06-28T00:51:05.135Z] >>> [apiv2][body] PUT https://storage.googleapis.com/uploads-988754960241.us-central1.cloudfunctions.appspot.com/d05a35c2-1e47-4a93-a945-78a54fdb6b41.zip [stream]
+[debug] [2022-06-28T00:51:05.535Z] <<< [apiv2][status] PUT https://storage.googleapis.com/uploads-988754960241.us-central1.cloudfunctions.appspot.com/d05a35c2-1e47-4a93-a945-78a54fdb6b41.zip 200
+[debug] [2022-06-28T00:51:05.536Z] <<< [apiv2][body] PUT https://storage.googleapis.com/uploads-988754960241.us-central1.cloudfunctions.appspot.com/d05a35c2-1e47-4a93-a945-78a54fdb6b41.zip [omitted]
+[info] +  functions: functions folder uploaded successfully 
+[info] 
+The following functions are found in your project but do not exist in your local source code:
+	createUser(us-central1)
+
+If you are renaming a function or changing its region, it is recommended that you create the new function first before deleting the old one to prevent event loss. For more info, visit https://firebase.google.com/docs/functions/manage-functions#modify
+

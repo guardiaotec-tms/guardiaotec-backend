@@ -6,18 +6,21 @@ const { obterEventosParser } = require("../service/obterEventosParser");
 const getLatestEvents = async () => {
   serviceName = "obterEventos";
 
+  const multiportalMirroringSystemAuth = {
+    id: "396",
+    senha: "3346edb6a2c4d90d6200f5671b08163e",
+  };
+
   try {
     const res = await axios.get(
       "http://ws4.1gps.com.br/services/InterfaceExternaService/" + serviceName,
       {
         params: {
-          id: "394",
-          senha: "af3307f3042961c082564fb12b3e678c",
+          id: multiportalMirroringSystemAuth.id,
+          senha: multiportalMirroringSystemAuth.senha,
         },
       }
     );
-
-    // console.log(res.data);
 
     const json = convert.xml2json(res.data, { compact: true, spaces: 2 });
     // console.log(json);

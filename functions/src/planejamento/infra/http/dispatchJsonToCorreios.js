@@ -31,7 +31,8 @@ const dispatchJsonToCorreios = async (planTripJson) => {
   const authorization = "Basic RUNUYXJjZ2lzOkVDVDIwMTY=";
 
   const response = await axios.post(
-    "https://homroteirizacao.correios.com.br/TMS.Services/TransportationTripService.svc/rest/InsertTripDetails",
+    // "https://homroteirizacao.correios.com.br/TMS.Services/TransportationTripService.svc/rest/InsertTripDetails",
+    "https://roteirizacao.correios.com.br/TMS.Services/TransportationTripService.svc/rest/InsertTripDetails",
     {
       ...planTripJson,
     },
