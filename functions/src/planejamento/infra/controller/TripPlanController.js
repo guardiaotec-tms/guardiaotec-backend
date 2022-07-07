@@ -39,6 +39,15 @@ class TripPlanController {
     ed.setHorarioInicio(ftNumber, horarioInicio);
   };
 
+  storeTripInfoInED = (tripInfo) => {
+    const { todaysTripsFts, ftNumber, company, vinculo } = tripInfo;
+    const ft = todaysTripsFts.find((ft) => ft["Nº da FT"] === ftNumber);
+    this.edController.addFt(ftNumber, ft);
+    this.edController.setTranspName(ftNumber, company.Transportadora);
+    this.edController.setTranspId(ftNumber, company.id);
+    this.edController.setAberturaLinha(ftNumber, vinculo.its[0].Chegada);
+  };
+
   integrateCompanyTrips = async (company) => {
     const todaysTripsFts = await findTodayTrips(company);
     let todaysFtsVinculos = await findVinculosFromFts(
@@ -49,12 +58,12 @@ class TripPlanController {
     const withIts = await filterVinculosWithIts(todaysFtsVinculos, company.id);
 
     for (const ftNumber in withIts) {
-      const ft = todaysTripsFts.find((ft) => ft["Nº da FT"] === ftNumber);
-      this.edController.addFt(ftNumber, ft);
-      this.edController.setTranspName(ftNumber, company.Transportadora);
-      this.edController.setTranspId(ftNumber, company.id);
       const vinculo = withIts[ftNumber];
-      this.edController.setAberturaLinha(ftNumber, vinculo.its[0].Chegada);
+      if (!vinculo.its) {
+        console.log("Vinculo does not have its. Continuing.");
+        continue;
+      }
+      this.storeTripInfoInED({ todaysTripsFts, ftNumber, company, vinculo });
       await this.integrateTrip(vinculo, company.id);
     }
   };

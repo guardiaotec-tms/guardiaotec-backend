@@ -14,7 +14,14 @@ const dispatchTrackJsonToCorreios = async (trackJson) => {
     }
   );
 
-  console.log(response.data.success, response.data.message);
+  if (response.data.success) {
+    console.log("Ocorreu um erro na integração de rastreamento.");
+    console.log(
+      response.data.success,
+      response.data.message,
+      "placa: " + trackJson.placa
+    );
+  }
 
   return response.data;
 };
