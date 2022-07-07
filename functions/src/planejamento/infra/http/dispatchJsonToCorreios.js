@@ -1,8 +1,9 @@
 const { default: axios } = require("axios");
+const fs = require("fs");
 
 const dispatchJsonToCorreios = async (planTripJson) => {
-  planTripJson = {
-    date: "15062022",
+  const planTripJson2 = {
+    date: "08072022",
     idFicha: "15713114",
     geoJson:
       '{"coordinates":[[-47.98150589999999,-15.7944439],[-47.89044819999999,-15.7968316],[-47.98150589999999,-15.7944439],[-47.9585642,-15.8153261],[-47.98150589999999,-15.7944439],[-47.98150589999999,-15.7944439],[-47.89712850000001,-15.7379332],[-47.95044040000001,-15.8080049],[-47.98150589999999,-15.7944439]],"type":"LineString","bbox":[-47.98150589999999,-15.8153261,-47.89044819999999,-15.7379332]}',
@@ -30,6 +31,11 @@ const dispatchJsonToCorreios = async (planTripJson) => {
 
   const authorization = "Basic RUNUYXJjZ2lzOkVDVDIwMTY=";
 
+  planTripJson.geoJson = JSON.parse(planTripJson.geoJson);
+  console.log(planTripJson);
+  console.log(planTripJson2);
+  // console.log(planTripJson2);
+  // return;
   const response = await axios.post(
     // "https://homroteirizacao.correios.com.br/TMS.Services/TransportationTripService.svc/rest/InsertTripDetails",
     "https://roteirizacao.correios.com.br/TMS.Services/TransportationTripService.svc/rest/InsertTripDetails",
@@ -42,6 +48,9 @@ const dispatchJsonToCorreios = async (planTripJson) => {
       },
     }
   );
+  // .catch((error) => {
+  //   console.log(error);
+  // });
 
   return response.data;
 

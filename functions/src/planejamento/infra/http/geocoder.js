@@ -9,14 +9,18 @@ const getCoordinatesFromAddress = (address) => {
   return new Promise((resolve, rej) => {
     geo.find(address, function (err, res) {
       // process response object
-      if (err) {
-        console.log(err);
-        rej(err.error_message);
+      try {
+        if (err) {
+          console.log(err);
+          rej(err.error_message);
+        }
+        if (res[0]) {
+          resolve(res[0].location);
+        }
+        resolve();
+      } catch (error) {
+        rej(error.message);
       }
-      if (res[0]) {
-        resolve(res[0].location);
-      }
-      resolve();
     });
   });
 };

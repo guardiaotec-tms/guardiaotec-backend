@@ -88,9 +88,9 @@ class EdController {
     console.log("hora de salvar os tmsPlanningReports");
     for (const ftNumber in this.ed) {
       const report = this.makeTMSPlanningReport(ftNumber);
-      db.collection(
-        `tmsPlanningReports/${getCurrentFormattedDate()}/reports`
-      ).add(report);
+      db.doc(
+        `tmsPlanningReports/${getCurrentFormattedDate()}/reports/${report.ft}`
+      ).set(report);
     }
   }
 }

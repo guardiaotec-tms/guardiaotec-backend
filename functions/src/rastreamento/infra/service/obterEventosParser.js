@@ -9,6 +9,11 @@ const obterEventosParser = (json) => {
   try {
     const events =
       json["ns:obterEventosResponse"]["ns:return"]["ax215:eventos"];
+
+    // console.log(events.length);
+    // console.log(json);
+    // console.log(json["ns:obterEventosResponse"]);
+    // console.log(events);
     const parsedEvents = [];
     for (const event of events) {
       let parsed = {};

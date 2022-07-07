@@ -25,9 +25,12 @@ class TripPlanController {
     );
     // console.log(plantripJson);
     const response = await dispatchJsonToCorreios(plantripJson);
-    const ftNumber = vinculo["Ficha Técnica"];
-    const ed = this.edController;
+    console.log("correios response:", response);
+    console.log("ft:", vinculo["Ficha Técnica"]);
 
+    const ftNumber = vinculo["Ficha Técnica"];
+
+    const ed = this.edController;
     ed.setPlanTripResponse(ftNumber, response);
     ed.setPlanTrip(ftNumber, plantripJson);
     ed.setDriverNumber(ftNumber, driverNumber);

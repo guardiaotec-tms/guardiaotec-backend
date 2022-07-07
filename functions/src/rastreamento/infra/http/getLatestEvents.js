@@ -8,7 +8,9 @@ const getLatestEvents = async () => {
 
   const multiportalMirroringSystemAuth = {
     id: "396",
+    // id: "394",
     senha: "3346edb6a2c4d90d6200f5671b08163e",
+    // senha: "af3307f3042961c082564fb12b3e678c",
   };
 
   try {

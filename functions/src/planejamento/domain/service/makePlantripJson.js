@@ -37,7 +37,7 @@ const makePlantripJson = async (transpId, vinculo) => {
         licensePlate: vehicle.Placa,
         additionalLicensePlate: vehicle.Placa,
         model: vehicle.Modelo,
-        weight: vehicle["Capacidade(m3)"],
+        weight: vehicle["Capacidade(Kg)"],
       },
       workflow: { id: 29 },
       date: getCurrentFormattedDate(),
