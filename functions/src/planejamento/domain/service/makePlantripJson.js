@@ -45,10 +45,7 @@ const makePlantripJson = async (transpId, vinculo) => {
     };
     return { plantripJson, driverNumber: driver.contato };
   } catch (error) {
-    console.log(error);
-    console.log("to aqui");
-    console.log(transpId);
-    console.log(vinculo["Veículo"]);
+    console.log("Erro!! Veículo: ", vinculo["Veículo"], error.message);
     throw new Error(error.message);
   }
 };

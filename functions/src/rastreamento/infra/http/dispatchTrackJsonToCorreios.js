@@ -1,4 +1,5 @@
-const { default: axios } = require("axios");
+// const { default: axios } = require("axios");
+const axios = require("axios").default;
 
 const dispatchTrackJsonToCorreios = async (trackJson) => {
   const authorization = "Basic RUNUYXJjZ2lzOkVDVDIwMTY=";
@@ -10,11 +11,12 @@ const dispatchTrackJsonToCorreios = async (trackJson) => {
     {
       headers: {
         Authorization: authorization,
+        timeout: 60000,
       },
     }
   );
 
-  if (response.data.success) {
+  if (!response.data.success) {
     console.log("Ocorreu um erro na integração de rastreamento.");
     console.log(
       response.data.success,

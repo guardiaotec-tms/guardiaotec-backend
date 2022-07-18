@@ -18,7 +18,7 @@ const { saveResponse } = require("../service/saveResponse");
 class TripTrackController {
   constructor() {
     this.latestEvents = [];
-    this.eventsIntegrated = 0;
+    this.eventsIntegrated = [];
   }
 
   async integrateEvent(trip, event) {
@@ -27,7 +27,8 @@ class TripTrackController {
     const trackJson = makeTrackJson(event, trip, previousTrackJson);
     const response = await dispatchTrackJsonToCorreios(trackJson);
     // saveResponse(response, trip, event.dataEquipamento);
-    this.eventsIntegrated += 1;
+    // this.eventsIntegrated += 1;
+    this.eventsIntegrated.push({ placa: trackJson.placa });
   }
 
   async integrateTrip(trip) {
@@ -38,13 +39,15 @@ class TripTrackController {
   }
 
   async main() {
-    const currentTrips = await findCurrentActiveTrips();
-    this.latestEvents = await getLatestEvents();
-
-    const promises = currentTrips.map((trip) => this.integrateTrip(trip));
-    Promise.all(promises).then(() => {
-      console.log("integrated " + this.eventsIntegrated + " events");
-    });
+    try {
+      const currentTrips = await findCurrentActiveTrips();
+      this.latestEvents = await getLatestEvents();
+      const promises = currentTrips.map((trip) => this.integrateTrip(trip));
+      await Promise.all(promises).then(() => {
+        console.log(this.eventsIntegrated.map((e) => e.placa));
+        console.log("integrated " + this.eventsIntegrated.length + " events");
+      });
+    } catch (error) {}
     // for (const trip of currentTrips) {
     // }
     /*

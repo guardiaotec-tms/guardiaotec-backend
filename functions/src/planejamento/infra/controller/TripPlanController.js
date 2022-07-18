@@ -19,17 +19,15 @@ class TripPlanController {
   }
 
   integrateTrip = async (vinculo, transpId) => {
+    // console.log("to no integrateTrip");
     const { plantripJson, driverNumber } = await makePlantripJson(
       transpId,
       vinculo
     );
-    // console.log(plantripJson);
+    // console.log("fiz o makePlanTripJson");
     const response = await dispatchJsonToCorreios(plantripJson);
-    console.log("correios response:", response);
-    console.log("ft:", vinculo["Ficha Técnica"]);
-
+    // console.log("despachei to correios");
     const ftNumber = vinculo["Ficha Técnica"];
-
     const ed = this.edController;
     ed.setPlanTripResponse(ftNumber, response);
     ed.setPlanTrip(ftNumber, plantripJson);
@@ -52,14 +50,24 @@ class TripPlanController {
   };
 
   integrateCompanyTrips = async (company) => {
+    console.log("Integrando ", company.Transportadora);
     const todaysTripsFts = await findTodayTrips(company);
+    // console.log("foundtodaytrips");
+    // console.log(todaysTripsFts.length);
     let todaysFtsVinculos = await findVinculosFromFts(
       company.id,
       todaysTripsFts
     );
+    // console.log("foundvinculosfromfts");
+    // console.log(todaysTripsFts.length);
 
     const withIts = await filterVinculosWithIts(todaysFtsVinculos, company.id);
+    // console.log(Object.entries(withIts).length);
+    for (const key in withIts) {
+      // console.log(key);
+    }
 
+    // console.log("vou começar o laço do withIts");
     for (const ftNumber in withIts) {
       const vinculo = withIts[ftNumber];
       if (!vinculo.its) {
@@ -72,28 +80,31 @@ class TripPlanController {
   };
 
   main = async () => {
-    // console.log("to aqui");
     const companies = await getCompanies();
     // const companies = [
     //   {
-    //     Transportadora: "JUS TRANSPORTES",
-    //     CNPJ: "39342625000177",
-    //     Contato: "061992713809",
-    //     Email: "TRANSPORTESJUS@GMAIL.COM",
-    //     Responsável: "MARCOS ",
-    //     id: "sPoryp9HSLenEbzlYQTq",
+    //     Transportadora: "Rra Servicos e Transportes",
+    //     CNPJ: "17.073.401/0001-74",
+    //     Contato: "1147522370",
+    //     Email: "rra.transportes@bol.com.br",
+    //     Responsável: "RONE",
+    //     id: "RpKzltId6ILwTt9FYemZ",
     //   },
     // ];
-
     // for (const company of companies) {
     //   this.integrateCompanyTrips(company);
     // }
-    const promises = companies.map((company) =>
-      this.integrateCompanyTrips(company)
-    );
-    Promise.all(promises).then(() => {
-      this.edController.saveEd();
+    const promises = companies.map((company) => {
+      // console.log(company.id);
+      return this.integrateCompanyTrips(company);
     });
+    Promise.all(promises)
+      .then(() => {
+        this.edController.saveEd();
+      })
+      .then(() => {
+        console.log("Concluído.");
+      });
   };
 }
 

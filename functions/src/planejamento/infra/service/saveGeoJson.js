@@ -6,9 +6,7 @@ const saveGeoJson = async (ftn, transpId, geojson) => {
     .doc(ftn)
     .set({ geojson })
     .then(() => {
-      console.log("Saved geojson");
-      console.log("ft: ", ftn);
-      // console.log("geojson", { geojson });
+      console.log("Geometria da viagem calculada! Ficha técnica: ", ftn);
     });
 };
 

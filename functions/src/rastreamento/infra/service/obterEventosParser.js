@@ -37,8 +37,10 @@ const obterEventosParser = (json) => {
     }
     return parsedEvents;
   } catch (error) {
+    console.log("line 40");
     console.log(error);
-    return [];
+    throw error;
+    // return [];
   }
 };
 

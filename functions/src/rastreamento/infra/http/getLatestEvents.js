@@ -1,7 +1,27 @@
-const { default: axios } = require("axios");
+// const { default: axios } = require("axios");
+const axios = require("axios").default;
+
 var convert = require("xml-js");
 const { obterEventosParser } = require("../service/obterEventosParser");
 // const fs = require("fs");
+
+const fetchEvents = async (multiportalMirroringSystemAuth) => {
+  const res = await axios.get(
+    "http://ws4.1gps.com.br/services/InterfaceExternaService/" + serviceName,
+    {
+      params: {
+        id: multiportalMirroringSystemAuth.id,
+        senha: multiportalMirroringSystemAuth.senha,
+      },
+      timeout: 60000,
+    }
+  );
+
+  const json = convert.xml2json(res.data, { compact: true, spaces: 2 });
+  // console.log(json);
+  //   fs.writeFileSync(serviceName + ".json", json);
+  return obterEventosParser(json);
+};
 
 const getLatestEvents = async () => {
   serviceName = "obterEventos";
@@ -14,20 +34,22 @@ const getLatestEvents = async () => {
   };
 
   try {
-    const res = await axios.get(
-      "http://ws4.1gps.com.br/services/InterfaceExternaService/" + serviceName,
-      {
-        params: {
-          id: multiportalMirroringSystemAuth.id,
-          senha: multiportalMirroringSystemAuth.senha,
-        },
+    let i = 0;
+    while (i < 5) {
+      try {
+        const response = await fetchEvents(multiportalMirroringSystemAuth);
+        return response;
+      } catch (error) {
+        await new Promise((res, rej) => {
+          setTimeout(() => {
+            res();
+          }, 30000);
+        });
+        console.log("erro i:", i);
+        i++;
       }
-    );
-
-    const json = convert.xml2json(res.data, { compact: true, spaces: 2 });
-    // console.log(json);
-    //   fs.writeFileSync(serviceName + ".json", json);
-    return obterEventosParser(json);
+    }
+    return [];
   } catch (error) {
     console.log(error);
   }

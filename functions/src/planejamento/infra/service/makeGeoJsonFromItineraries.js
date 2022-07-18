@@ -55,10 +55,10 @@ const makeGeoJsonFromItineraries = async (itineraries, transpId) => {
   const coordsArray = [];
   for (const i of sorted) {
     const address = i["Endereço"];
+
     const coordinates = await getCoordinatesFromAddress(address);
     if (coordinates) coordsArray.push(coordinates);
   }
-  //   console.log(coordsArray);
   return makeGeoJsonFromCoordsArray(coordsArray);
 };
 

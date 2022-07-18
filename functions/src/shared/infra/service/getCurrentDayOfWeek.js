@@ -13,7 +13,7 @@ const weekDayMap = {
   "quarta-feira": "Qua",
   "quinta-feira": "Qui",
   "sexta-feira": "Sex",
-  sábado: "Sab",
+  sábado: "Sáb",
   domingo: "Dom",
 };
 

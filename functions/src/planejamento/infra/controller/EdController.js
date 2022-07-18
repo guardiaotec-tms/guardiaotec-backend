@@ -70,14 +70,17 @@ class EdController {
     tmsPlanningReport.codigoTMS = ed.planTripResponse.Item;
     tmsPlanningReport.transpId = ed.transpId;
     tmsPlanningReport.transportadora = ed.transportadora;
-    tmsPlanningReport.resultado = ed.planTripResponse.Error
-      ? "Erro"
-      : "Sucesso";
+    tmsPlanningReport.resultado =
+      ed.planTripResponse.Error || ed.planTripResponse.Item === 0
+        ? "Erro"
+        : "Sucesso";
+    tmsPlanningReport.mensagem = ed.planTripResponse.Message;
     return tmsPlanningReport;
   }
 
   async saveEd() {
-    console.log("agora é a hora de salvar a tal da ed! logando ela:");
+    console.log("\nIntegrações concluídas. Armazenando os dados.");
+    // console.log("agora é a hora de salvar a tal da ed! logando ela:");
     // console.log(this.ed);
     for (const ftNumber in this.ed) {
       db.doc(
@@ -85,7 +88,7 @@ class EdController {
       ).set(this.ed[ftNumber]);
     }
 
-    console.log("hora de salvar os tmsPlanningReports");
+    // console.log("hora de salvar os tmsPlanningReports");
     for (const ftNumber in this.ed) {
       const report = this.makeTMSPlanningReport(ftNumber);
       db.doc(

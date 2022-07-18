@@ -69,12 +69,42 @@ const getVinculos = async (transpId) => {
 const findVinculosFromFts = async (transpId, fts) => {
   const vinculos = await getVinculos(transpId);
   const map = {};
+
+  // for (const ft of fts) {
+  //   console.log(ft["Nº da FT"]);
+  // }
+
+  // console.log("\n\n");
+
+  // for (const v of vinculos) {
+  //   console.log(v["Ficha Técnica"]);
+  // }
+
+  // console.log("\n\n");
+
   for (const ft of fts) {
     const vinculo = vinculos.find((v) => v["Ficha Técnica"] === ft["Nº da FT"]);
+    // for (const v of vinculos) {
+    //   if (v["Ficha Técnica"] === "14335316") {
+    //     console.log("oi");
+    //     if (ft["Nº da FT"] === "14335316") console.log("oi");
+    //   }
+    //   if (v["Ficha Técnica"] === ft["Nº da FT"]) {
+    //     map[ft["Nº da FT"]] = v;
+    //   }
+    // }
     if (vinculo) {
       map[ft["Nº da FT"]] = vinculo;
+    } else {
+      // console.log(ft["Nº da FT"]);
     }
   }
+
+  // console.log("\n\n");
+  // console.log(vinculos.length);
+  // console.log(fts.length);
+  // console.log(Object.entries(map).length);
+
   return map;
 };
 
@@ -87,7 +117,6 @@ const getCompanies = async () => {
       qs.forEach((doc) => {
         let data = doc.data();
         data.id = doc.id;
-        console.log(data.id);
         companies.push(data);
       });
     });

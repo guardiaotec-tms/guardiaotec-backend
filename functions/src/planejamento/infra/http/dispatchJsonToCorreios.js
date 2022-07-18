@@ -1,5 +1,5 @@
-const { default: axios } = require("axios");
-const fs = require("fs");
+// const { default: axios } = require("axios");
+const axios = require("axios").default;
 
 const dispatchJsonToCorreios = async (planTripJson) => {
   const planTripJson2 = {
@@ -30,12 +30,8 @@ const dispatchJsonToCorreios = async (planTripJson) => {
   //   Buffer.from(username + ":" + password, "utf-8").toString("base64");
 
   const authorization = "Basic RUNUYXJjZ2lzOkVDVDIwMTY=";
-
   planTripJson.geoJson = JSON.parse(planTripJson.geoJson);
-  console.log(planTripJson);
-  console.log(planTripJson2);
-  // console.log(planTripJson2);
-  // return;
+
   const response = await axios.post(
     // "https://homroteirizacao.correios.com.br/TMS.Services/TransportationTripService.svc/rest/InsertTripDetails",
     "https://roteirizacao.correios.com.br/TMS.Services/TransportationTripService.svc/rest/InsertTripDetails",
@@ -45,6 +41,7 @@ const dispatchJsonToCorreios = async (planTripJson) => {
     {
       headers: {
         Authorization: authorization,
+        timeout: 60000,
       },
     }
   );
