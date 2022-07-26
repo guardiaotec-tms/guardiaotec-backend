@@ -4,6 +4,9 @@ const {
   TripPlanController,
 } = require("./src/planejamento/infra/controller/TripPlanController");
 const {
+  findCurrentActiveTrips,
+} = require("./src/rastreamento/domain/service/findCurrentActiveTrips");
+const {
   TripTrackController,
 } = require("./src/rastreamento/infra/controller/TripTrackController");
 const { test } = require("./src/test");
@@ -41,3 +44,17 @@ exports.deleteUser = functions
     const controller = new UsersManager();
     await controller.deleteUser(req, res);
   });
+
+// exports.debugCurrentTrips = functions
+//   .runWith({ timeoutSeconds: 540 })
+//   .https.onRequest(async (req, res) => {
+//     res.set("Access-Control-Allow-Origin", "*");
+//     res.set("Access-Control-Allow-Methods", "GET, POST");
+//     const currentTrips = await findCurrentActiveTrips();
+//     console.log(currentTrips.map((ct) => ct["Nº da FT"]));
+//     console.log(
+//       currentTrips.map((ct) => ct.plannedTrip.plannedVehicle.licensePlate)
+//     );
+
+//     res.json("debugging currenttrips");
+//   });

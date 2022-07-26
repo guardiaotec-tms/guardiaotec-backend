@@ -14,11 +14,15 @@ const {
 const { dummyEvents } = require("../http/dummyEvents");
 const { getLatestEvents } = require("../http/getLatestEvents");
 const { saveResponse } = require("../service/saveResponse");
+const {
+  MakeGeometriesController,
+} = require("../../../geometriaViagem/infra/controller/MakeGeometriesController");
 
 class TripTrackController {
   constructor() {
     this.latestEvents = [];
     this.eventsIntegrated = [];
+    this.makeGeometriesController = new MakeGeometriesController();
   }
 
   async integrateEvent(trip, event) {
@@ -40,11 +44,14 @@ class TripTrackController {
 
   async main() {
     try {
-      const currentTrips = await findCurrentActiveTrips();
-      this.latestEvents = await getLatestEvents();
+      // const currentTrips = await findCurrentActiveTrips();
+      // this.latestEvents = await getLatestEvents();
+      this.latestEvents = dummyEvents();
+      this.makeGeometriesController.main(this.latestEvents);
+      return;
       const promises = currentTrips.map((trip) => this.integrateTrip(trip));
       await Promise.all(promises).then(() => {
-        console.log(this.eventsIntegrated.map((e) => e.placa));
+        console.log(this.eventsIntegrated.map((e) => e.placa).join(","));
         console.log("integrated " + this.eventsIntegrated.length + " events");
       });
     } catch (error) {}

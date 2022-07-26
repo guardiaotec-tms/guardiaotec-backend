@@ -5,7 +5,7 @@ var convert = require("xml-js");
 const { obterEventosParser } = require("../service/obterEventosParser");
 // const fs = require("fs");
 
-const fetchEvents = async (multiportalMirroringSystemAuth) => {
+const fetchEvents = async (multiportalMirroringSystemAuth, serviceName) => {
   const res = await axios.get(
     "http://ws4.1gps.com.br/services/InterfaceExternaService/" + serviceName,
     {
@@ -37,7 +37,10 @@ const getLatestEvents = async () => {
     let i = 0;
     while (i < 5) {
       try {
-        const response = await fetchEvents(multiportalMirroringSystemAuth);
+        const response = await fetchEvents(
+          multiportalMirroringSystemAuth,
+          serviceName
+        );
         return response;
       } catch (error) {
         await new Promise((res, rej) => {

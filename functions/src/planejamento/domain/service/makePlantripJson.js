@@ -27,6 +27,8 @@ const getPlannedDrivers = (driver, driver2) => {
 const makePlantripJson = async (transpId, vinculo) => {
   try {
     const geoJson = await getGeoJson(transpId, vinculo);
+    // console.log(geoJson);
+    // throw Error("quero cancelar!");
     const driver = await getDriverData(transpId, vinculo.Motorista);
     const driver2 = await getDriverData(transpId, vinculo["Motorista 2"]);
     const vehicle = await getVehicleData(transpId, vinculo["Veículo"]);
@@ -42,6 +44,7 @@ const makePlantripJson = async (transpId, vinculo) => {
       workflow: { id: 29 },
       date: getCurrentFormattedDate(),
       idFicha: vinculo["Ficha Técnica"],
+      integrador: "Guardião tec ",
     };
     return { plantripJson, driverNumber: driver.contato };
   } catch (error) {

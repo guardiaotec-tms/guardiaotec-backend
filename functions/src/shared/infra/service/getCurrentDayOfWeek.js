@@ -21,3 +21,5 @@ module.exports = {
   getCurrentDayOfWeek,
   weekDayMap,
 };
+
+// console.log(getCurrentDayOfWeek)
