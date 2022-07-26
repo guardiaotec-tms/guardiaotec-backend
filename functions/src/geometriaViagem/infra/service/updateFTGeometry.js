@@ -11,17 +11,12 @@ const getEventsCoords = (events) => {
 
 const updateFTGeometry = async (latestEvents, ftPlateMap, licensePlate) => {
   const relatedEvents = filterEventsByPlate(latestEvents, licensePlate);
+  console.log(licensePlate, relatedEvents.length);
   const newCoords = getEventsCoords(relatedEvents);
   const ftn = ftPlateMap[licensePlate];
   const currentCoords = await getCurrentCoords(ftn);
-
-  console.log(currentCoords);
-
   const unitedCoords = currentCoords.concat(newCoords);
-
-  console.log(unitedCoords);
   await saveNewCoords(ftn, unitedCoords);
-  console.log("saved new coords");
 };
 
 module.exports = { updateFTGeometry };
