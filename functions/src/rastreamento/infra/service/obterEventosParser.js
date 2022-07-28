@@ -4,9 +4,21 @@
 
 const { equipmentDateFormatter } = require("./equipmentDateFormatter");
 
+const noData = (json) => {
+  return (
+    json["ns:obterEventosResponse"]["ns:return"]["ax215:mensagemRetorno"][
+      "_text"
+    ] === "NAO HA DADOS DISPONIVEIS PARA ESSA CONSULTA"
+  );
+};
+
 const obterEventosParser = (json) => {
   json = JSON.parse(json);
   try {
+    if (noData(json)) {
+      console.log("No data");
+      return [];
+    }
     const events =
       json["ns:obterEventosResponse"]["ns:return"]["ax215:eventos"];
 
@@ -38,7 +50,8 @@ const obterEventosParser = (json) => {
     return parsedEvents;
   } catch (error) {
     console.log("line 40");
-    console.log(error);
+    console.log(error.message);
+
     throw error;
     // return [];
   }
