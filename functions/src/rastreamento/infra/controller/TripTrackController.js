@@ -44,16 +44,17 @@ class TripTrackController {
 
   async main() {
     try {
-      // const currentTrips = await findCurrentActiveTrips();
-      // this.latestEvents = await getLatestEvents();
-      this.latestEvents = dummyEvents();
-      this.makeGeometriesController.main(this.latestEvents);
-      return;
+      const currentTrips = await findCurrentActiveTrips();
+      this.latestEvents = await getLatestEvents();
+      // this.latestEvents = dummyEvents();
+      // return;
       const promises = currentTrips.map((trip) => this.integrateTrip(trip));
       await Promise.all(promises).then(() => {
         console.log(this.eventsIntegrated.map((e) => e.placa).join(","));
         console.log("integrated " + this.eventsIntegrated.length + " events");
       });
+
+      this.makeGeometriesController.main(this.latestEvents);
     } catch (error) {}
     // for (const trip of currentTrips) {
     // }
