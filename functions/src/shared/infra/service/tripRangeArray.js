@@ -1,9 +1,8 @@
 const tripRangeArray = (inicio, fim) => {
-  let hour = inicio;
   const range = [];
-  while (hour != (fim + 1) % 24) {
+  if ([0, 1, 2].includes(fim)) fim = 23;
+  for (let hour = inicio; hour < fim + 1; hour += 1) {
     range.push(hour);
-    hour = (hour + 1) % 24;
   }
   return range;
 };
