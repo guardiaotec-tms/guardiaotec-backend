@@ -17,7 +17,8 @@ const getDriverData = async (transpId, driverName) => {
 };
 
 const getVehicleData = async (transpId, plate) => {
-  return db
+  plate = plate.trim();
+  return await db
     .collection("companies/" + transpId + "/vehicles")
     .where("Placa", "==", plate)
     .get()
