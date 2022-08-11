@@ -6,7 +6,8 @@ const getCurrentCoords = async (ftn) => {
     .get()
     .then((doc) => doc.data().coords);
 
-  return JSON.parse(currentCoords);
+  // return JSON.parse(currentCoords);
+  return currentCoords;
 };
 
 module.exports = { getCurrentCoords };

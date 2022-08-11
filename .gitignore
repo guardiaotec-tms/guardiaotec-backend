@@ -64,3 +64,8 @@ node_modules/
 
 # dotenv environment variables file
 .env
+**/firebaseConfig.*
+guardiaotec-tms-serviceaccount-key.json
+a.js
+b.js
+c.js

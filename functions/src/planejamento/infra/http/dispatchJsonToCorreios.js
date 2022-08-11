@@ -45,9 +45,6 @@ const dispatchJsonToCorreios = async (planTripJson) => {
       },
     }
   );
-  // .catch((error) => {
-  //   console.log(error);
-  // });
 
   return response.data;
 

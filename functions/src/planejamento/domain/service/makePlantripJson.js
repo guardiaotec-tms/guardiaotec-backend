@@ -5,6 +5,7 @@ const {
 const {
   getCurrentFormattedDate,
 } = require("../../../shared/infra/service/getCurrentFormattedDate");
+const { uploadError } = require("../../../shared/infra/service/uploadError");
 const { getGeoJson } = require("../../infra/service/getGeoJson");
 
 const getDriverObj = (driver) => {
@@ -27,6 +28,7 @@ const getPlannedDrivers = (driver, driver2) => {
 const makePlantripJson = async (transpId, vinculo) => {
   try {
     const geoJson = await getGeoJson(transpId, vinculo);
+
     // console.log(geoJson);
     // throw Error("quero cancelar!");
     const driver = await getDriverData(transpId, vinculo.Motorista);
@@ -49,6 +51,10 @@ const makePlantripJson = async (transpId, vinculo) => {
     return { plantripJson, driverNumber: driver.contato };
   } catch (error) {
     console.log("Erro!! Veículo: ", vinculo["Veículo"], error.message);
+    uploadError({
+      where: "makePlantripJson",
+      message: "Erro!! Veículo: " + vinculo["Veículo"] + " " + error.message,
+    });
     throw new Error(error.message);
   }
 };

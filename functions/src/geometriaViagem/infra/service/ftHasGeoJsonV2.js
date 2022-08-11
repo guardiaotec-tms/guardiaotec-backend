@@ -8,6 +8,6 @@ const ftHasGeoJsonV2 = async (company, ftn) => {
   if (!geojsonsDoc) {
     return false;
   }
-  return !!geojsonsDoc.geojson2;
+  return !!geojsonsDoc.geojsonv2;
 };
 module.exports = { ftHasGeoJsonV2 };

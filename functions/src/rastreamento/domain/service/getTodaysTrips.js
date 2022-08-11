@@ -10,6 +10,7 @@ const getTodaysTrips = async () => {
     .collection(`trackingHelperDataStructures/eds/${today}`)
     .get()
     .then((qs) => qs.forEach((doc) => trips.push(doc.data())));
+
   return trips;
 };
 

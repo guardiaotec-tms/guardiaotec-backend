@@ -42,6 +42,7 @@ class EdController {
   setHorarioFim(ftNumber, horarioFim) {
     // horarioFim.setHours();
     horarioFim = horarioFim.getHours() + 1 - 3;
+    if ([0, 1, 2].includes(horarioFim)) horarioFim = 23;
     this.ed[ftNumber].horarioFim = horarioFim;
   }
 

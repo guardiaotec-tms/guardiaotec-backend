@@ -8,6 +8,11 @@ const filterFTsWithoutGeojsonV2 = async (company, fts) => {
     if (has) console.log("continuing ftn: ", ftn);
     if (!has) withoutGeoJsonV2.push(ft);
   }
+  console.log(
+    `number of fts with geojsonV2 in ${company.Transportadora}: ${
+      fts.length - withoutGeoJsonV2.length
+    }`
+  );
   return withoutGeoJsonV2;
 };
 

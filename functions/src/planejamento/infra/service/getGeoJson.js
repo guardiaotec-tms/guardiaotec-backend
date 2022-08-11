@@ -11,8 +11,15 @@ const getGeoJson = async (transpId, vinculo) => {
     });
 
   // if (geojsonDoc) console.log("encontrei");
-  if (geojsonDoc) return geojsonDoc.geojson;
-  return makeGeoJson(transpId, vinculo);
+  if (!geojsonDoc) return makeGeoJson(transpId, vinculo);
+  if (geojsonDoc.geojsonv2) {
+    console.log(`Usando geojsonv2, ficha: ${vinculo["Ficha Técnica"]}`);
+    return geojsonDoc.geojsonv2;
+  }
+  console.log(
+    `Sem v2. Usando antigo geojsonv1, ficha: ${vinculo["Ficha Técnica"]}`
+  );
+  return geojsonDoc.geojson;
 };
 
 module.exports = { getGeoJson };

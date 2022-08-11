@@ -5,7 +5,7 @@ const getWatchedFTs = async () => {
     .collection("watchedFTs")
     .get()
     .then((qs) => qs.docs.map((doc) => doc.data()));
-  return watchedDocs.filter((wd) => wd.staus === "active");
+  return watchedDocs.filter((wd) => wd.status === "active");
   // return ["RER0G46"];
 };
 

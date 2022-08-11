@@ -3,7 +3,8 @@ const { db } = require("../../../shared/infra/database/firebase");
 const saveNewCoords = async (ftn, unitedCoords) => {
   await db
     .doc(`watchedFTs/${ftn}`)
-    .update({ coords: JSON.stringify(unitedCoords) });
+    // .update({ coords: JSON.stringify(unitedCoords) });
+    .update({ coords: unitedCoords });
 };
 
 module.exports = { saveNewCoords };
