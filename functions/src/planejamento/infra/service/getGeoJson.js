@@ -13,7 +13,7 @@ const getGeoJson = async (transpId, vinculo) => {
   // if (geojsonDoc) console.log("encontrei");
   if (!geojsonDoc) return makeGeoJson(transpId, vinculo);
   if (geojsonDoc.geojsonv2) {
-    console.log(`Usando geojsonv2, ficha: ${vinculo["Ficha Técnica"]}`);
+    // console.log(`Usando geojsonv2, ficha: ${vinculo["Ficha Técnica"]}`);
     return geojsonDoc.geojsonv2;
   }
   console.log(
