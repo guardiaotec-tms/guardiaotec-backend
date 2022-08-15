@@ -81,20 +81,19 @@ class EdController {
 
   async saveEd() {
     console.log("\nIntegrações concluídas. Armazenando os dados.");
-    // console.log("agora é a hora de salvar a tal da ed! logando ela:");
-    // console.log(this.ed);
+
+    const today = getCurrentFormattedDate();
+
     for (const ftNumber in this.ed) {
-      db.doc(
-        `trackingHelperDataStructures/eds/${getCurrentFormattedDate()}/${ftNumber}`
-      ).set(this.ed[ftNumber]);
+      db.doc(`trackingHelperDataStructures/eds/${today}/${ftNumber}`).set(
+        this.ed[ftNumber]
+      );
     }
 
     // console.log("hora de salvar os tmsPlanningReports");
     for (const ftNumber in this.ed) {
       const report = this.makeTMSPlanningReport(ftNumber);
-      db.doc(
-        `tmsPlanningReports/${getCurrentFormattedDate()}/reports/${report.ft}`
-      ).set(report);
+      db.doc(`tmsPlanningReports/${today}/reports/${report.ft}`).set(report);
     }
   }
 }
