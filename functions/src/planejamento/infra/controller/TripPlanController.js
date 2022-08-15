@@ -19,25 +19,29 @@ class TripPlanController {
   }
 
   integrateTrip = async (vinculo, transpId) => {
-    // console.log("to no integrateTrip");
-    const { plantripJson, driverNumber } = await makePlantripJson(
-      transpId,
-      vinculo
-    );
-    // console.log("fiz o makePlanTripJson");
-    const response = await dispatchJsonToCorreios(plantripJson);
-    // console.log("despachei to correios");
     const ftNumber = vinculo["Ficha Técnica"];
-    const ed = this.edController;
-    ed.setPlanTripResponse(ftNumber, response);
-    ed.setPlanTrip(ftNumber, plantripJson);
-    ed.setDriverNumber(ftNumber, driverNumber);
-    const { horarioFim, horarioInicio } = await findTripTimeRange(
-      vinculo,
-      transpId
-    );
-    ed.setHorarioFim(ftNumber, horarioFim);
-    ed.setHorarioInicio(ftNumber, horarioInicio);
+    try {
+      const { plantripJson, driverNumber } = await makePlantripJson(
+        transpId,
+        vinculo
+      );
+      const response = await dispatchJsonToCorreios(plantripJson);
+      const ed = this.edController;
+      ed.setPlanTripResponse(ftNumber, response);
+      ed.setPlanTrip(ftNumber, plantripJson);
+      ed.setDriverNumber(ftNumber, driverNumber);
+      const { horarioFim, horarioInicio } = await findTripTimeRange(
+        vinculo,
+        transpId
+      );
+      ed.setHorarioFim(ftNumber, horarioFim);
+      ed.setHorarioInicio(ftNumber, horarioInicio);
+      await ed.saveFtData(ftNumber);
+    } catch (error) {
+      console.log(
+        `Não foi possível integrar a ficha ${ftNumber}. Erro: ${error.message}`
+      );
+    }
   };
 
   storeTripInfoInED = (tripInfo) => {
@@ -74,35 +78,21 @@ class TripPlanController {
   main = async () => {
     try {
       const companies = await getCompanies();
-      // const companies = [
-      //   {
-      //     Transportadora: "Rra Servicos e Transportes",
-      //     CNPJ: "17.073.401/0001-74",
-      //     Contato: "1147522370",
-      //     Email: "rra.transportes@bol.com.br",
-      //     Responsável: "RONE",
-      //     id: "RpKzltId6ILwTt9FYemZ",
-      //   },
-      // ];
-      // for (const company of companies) {
-      //   this.integrateCompanyTrips(company);
-      // }
       const promises = companies.map((company) => {
-        // console.log(company.id);
         return this.integrateCompanyTrips(company);
       });
-      Promise.all(promises)
-        .then(() => {
-          this.edController.saveEd();
-        })
-        .then(() => {
-          console.log("Concluído.");
-        })
-        .catch((error) => {
-          console.log("Loging from planning main()", error.message);
-        });
+      await Promise.all(promises).then(() => {
+        // this.edController.saveEd();
+        console.log("Concluído.");
+      });
+      // .catch((error) => {
+      //   console.log("Loging from planning main()", error.message);
+      // });
     } catch (error) {
-      console.log("erro em tripplancontroller main()", error.message);
+      console.log(
+        "Erro na integração do planejamento em main(): ",
+        error.message
+      );
     }
   };
 }

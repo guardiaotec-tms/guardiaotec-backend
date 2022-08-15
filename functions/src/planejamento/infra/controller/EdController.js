@@ -7,6 +7,7 @@ const { mergeHourWithToday } = require("../service/mergeHourWithToday");
 class EdController {
   constructor() {
     this.ed = {};
+    this.today = getCurrentFormattedDate();
   }
 
   addFt(ftNumber, ft) {
@@ -79,21 +80,30 @@ class EdController {
     return tmsPlanningReport;
   }
 
+  async saveHelperData(ftNumber, today) {
+    await db
+      .doc(`trackingHelperDataStructures/eds/${today}/${ftNumber}`)
+      .set(this.ed[ftNumber]);
+  }
+
+  async saveReportData(ftNumber, today) {
+    const report = this.makeTMSPlanningReport(ftNumber);
+    await db
+      .doc(`tmsPlanningReports/${today}/reports/${report.ft}`)
+      .set(report);
+  }
+
+  async saveFtData(ftNumber) {
+    await this.saveHelperData(ftNumber, this.today);
+    await this.saveReportData(ftNumber, this.today);
+    console.log("Ficha integrada: ", ftNumber);
+  }
+
   async saveEd() {
     console.log("\nIntegrações concluídas. Armazenando os dados.");
 
-    const today = getCurrentFormattedDate();
-
     for (const ftNumber in this.ed) {
-      db.doc(`trackingHelperDataStructures/eds/${today}/${ftNumber}`).set(
-        this.ed[ftNumber]
-      );
-    }
-
-    // console.log("hora de salvar os tmsPlanningReports");
-    for (const ftNumber in this.ed) {
-      const report = this.makeTMSPlanningReport(ftNumber);
-      db.doc(`tmsPlanningReports/${today}/reports/${report.ft}`).set(report);
+      this.saveFtData(ftNumber);
     }
   }
 }
