@@ -31,4 +31,4 @@ const strjsonToOutput = (name) => {
   fs.writeFileSync("./geojson/output" + name, JSON.stringify(geo));
 };
 
-strjsonToOutput("ft4.txt");
+strjsonToOutput("16340110.txt");

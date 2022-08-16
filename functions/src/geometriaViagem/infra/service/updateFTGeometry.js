@@ -5,6 +5,7 @@ const {
 const {
   tripRangeArray,
 } = require("../../../shared/infra/service/tripRangeArray");
+const { equipmentDateFromString } = require("./equipmentDateFromString");
 const { getCurrentCoords } = require("./getCurrentCoords");
 const { saveNewCoords } = require("./saveNewCoords");
 
@@ -15,7 +16,8 @@ const filterEventsByPlate = (latestEvents, licensePlate) => {
 const getEventsCoords = (events) => {
   return events.map((event) => ({
     coord: [event.longitude, event.latitude],
-    recordedAt: new Date(),
+    // recordedAt: new Date(),
+    recordedAt: equipmentDateFromString(event.dataEquipamento),
   }));
 };
 
@@ -45,6 +47,7 @@ const updateFTGeometry = async (latestEvents, ftPlateMap, licensePlate) => {
   // console.log("not continuing in updateGeometry ftn: ", ftn);
 
   const relatedEvents = filterEventsByPlate(latestEvents, licensePlate);
+
   // console.log(licensePlate, relatedEvents.length);
   const newCoords = getEventsCoords(relatedEvents);
   const currentCoords = await getCurrentCoords(ftn);

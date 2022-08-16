@@ -81,13 +81,14 @@ class TripPlanController {
       const promises = companies.map((company) => {
         return this.integrateCompanyTrips(company);
       });
-      await Promise.all(promises).then(() => {
-        // this.edController.saveEd();
-        console.log("Concluído.");
-      });
-      // .catch((error) => {
-      //   console.log("Loging from planning main()", error.message);
-      // });
+      await Promise.all(promises)
+        .then(() => {
+          this.edController.saveEd();
+          console.log("Concluído.");
+        })
+        .catch((error) => {
+          console.log("Loging from planning main()", error.message);
+        });
     } catch (error) {
       console.log(
         "Erro na integração do planejamento em main(): ",
