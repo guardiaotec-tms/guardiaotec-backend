@@ -28,30 +28,33 @@ const isActiveTrip = async (ftn) => {
     .get()
     .then((doc) => doc.data());
 
-  // // console.log(data);
-  // return false;
-  // console.log(currentHour, horarioInicio, horarioFim);
   const range = tripRangeArray(horarioInicio, horarioFim);
   return range.includes(Number(currentHour));
 };
 
+const filterEqualTimes = (coords) => {
+  const filtered = [];
+  for (const coord of coords) {
+    const found = filtered.find((c) => c.recordedAt === coord.recordedAt);
+    if (found) {
+      console.log("continuing in filterEqualTimes");
+      continue;
+    }
+    filtered.push(coord);
+  }
+  return filtered;
+};
+
 const updateFTGeometry = async (latestEvents, ftPlateMap, licensePlate) => {
   const ftn = ftPlateMap[licensePlate];
-
-  //if now is not a time of active trip, return
   if (!(await isActiveTrip(ftn))) {
-    // console.log("continuing in updateGeometry ftn: ", ftn);
     return;
   }
-
-  // console.log("not continuing in updateGeometry ftn: ", ftn);
-
   const relatedEvents = filterEventsByPlate(latestEvents, licensePlate);
-
-  // console.log(licensePlate, relatedEvents.length);
   const newCoords = getEventsCoords(relatedEvents);
+  const withoutEqualTimes = filterEqualTimes(newCoords);
   const currentCoords = await getCurrentCoords(ftn);
-  const unitedCoords = currentCoords.concat(newCoords);
+  const unitedCoords = currentCoords.concat(withoutEqualTimes);
   await saveNewCoords(ftn, unitedCoords);
 };
 
