@@ -32,10 +32,25 @@ const isActiveTrip = async (ftn) => {
   return range.includes(Number(currentHour));
 };
 
+const toDate = (date) => {
+  return date.recordedAt instanceof Date
+    ? date.recordedAt
+    : date.recordedAt.toDate();
+};
+
 const filterEqualTimes = (coords) => {
   const filtered = [];
   for (const coord of coords) {
-    const found = filtered.find((c) => c.recordedAt === coord.recordedAt);
+    const coordDate = toDate(coord);
+    const found = filtered.find((c) => {
+      const cDate = toDate(c);
+      var difference = cDate.getTime() - coordDate.getTime(); // This will give difference in milliseconds
+      var resultInSeconds = Math.round(difference / 1000);
+      if (resultInSeconds < 30) {
+        console.log("result in seconds < 30");
+        return true;
+      }
+    });
     if (found) {
       console.log("continuing in filterEqualTimes");
       continue;
@@ -52,10 +67,11 @@ const updateFTGeometry = async (latestEvents, ftPlateMap, licensePlate) => {
   }
   const relatedEvents = filterEventsByPlate(latestEvents, licensePlate);
   const newCoords = getEventsCoords(relatedEvents);
-  const withoutEqualTimes = filterEqualTimes(newCoords);
+  // const withoutEqualTimes = filterEqualTimes(newCoords);
   const currentCoords = await getCurrentCoords(ftn);
-  const unitedCoords = currentCoords.concat(withoutEqualTimes);
-  await saveNewCoords(ftn, unitedCoords);
+  const unitedCoords = currentCoords.concat(newCoords);
+  const withoutEqualTimes = filterEqualTimes(unitedCoords);
+  await saveNewCoords(ftn, withoutEqualTimes);
 };
 
 module.exports = { updateFTGeometry };
