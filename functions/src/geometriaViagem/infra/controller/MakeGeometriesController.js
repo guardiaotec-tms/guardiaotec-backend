@@ -7,6 +7,7 @@ class MakeGeometriesController {
 
   async main(latestEvents) {
     const watchedFTs = await getWatchedFTs();
+    console.log(watchedFTs);
     this.ftPlateMap = await getFTPlateMap();
     for (const ft of watchedFTs) {
       try {
